@@ -50,7 +50,7 @@ var win = [
   [2, 4, 6]
 ]
 
-var gameState =
+// var gameState =
 
 var squares = document.getElementsByClassName('square');
 var player1 = true;
@@ -83,7 +83,9 @@ function changeValue(){
         // if currentGameX === win combination
 
       }
-      player1 = !player1
+      player1 = !player1;
+      // console.log(parseInt(fullSquare.textContent));
+      boardFull();
       checkWin();
     })
 
@@ -98,32 +100,62 @@ function checkWin(){
   for (var c = 0; c < win.length; c++){
       var orderedO = currentGameO.sort();
       var orderedX = currentGameX.sort();
-      console.log('checking for win');
-      console.log(win[c]);
-      console.log(orderedO);
-    if((win[c][0] === orderedX[0] && win[c][1] === orderedX[1] && win[c][2] === orderedX[2])){
-      console.log('orderx', orderedX)
+      // console.log('checking for win');
+      // console.log(win[c]);
+      // console.log('orderedO ---- ' + orderedO);
+      // console.log('orderedX ---- ' + orderedX);
+      // console.log(orderedX);
+      // console.log(orderedO);
+
+      // console.log( (win[c].indexOf(orderedX[0])) );
+      // console.log( (win[c].indexOf(orderedX[1])) );
+      // console.log( (win[c].indexOf(orderedX[2])) );
+
+
+    // if((win[c][0] === orderedX[0] && win[c][1] === orderedX[1] && win[c][2] === orderedX[2])){
+    if( (orderedX.indexOf(win[c][0]) !== -1) && (orderedX.indexOf(win[c][1]) !== -1) && (orderedX.indexOf(win[c][2]) !== -1) ) {
+      // console.log('orderx', orderedX)
       alert('Player1 Wins');
 
-      //reset the game
-      reset();
-    }else if(win[c][0] === orderedO[0] && win[c][1] === orderedO[1] && win[c][2] === orderedO[2]){
-      alert('player2 wins');
-      console.log('player2');
-      //reset the game
-    reset();
+      //if index of first position of is there
 
+      //reset the game
+      resetGame();
+    }else if( (orderedO.indexOf(win[c][0]) !== -1) && (orderedO.indexOf(win[c][1]) !== -1) && (orderedO.indexOf(win[c][2]) !== -1) ){
+      alert('player2 wins');
+      // console.log('ordero', orderedO)
+      // console.log('player2');
+      //reset the game
+        resetGame();
     }
   }
 }
 
-function reset(){
+function resetGame(){
   document.querySelector("#board").innerHTML = " ";
   createSquares();
   changeValue();
   currentGameO = [];
   currentGameX = [];
+  player1 = true;
 }
+
+var fullSquare = document.getElementsByClassName('fullSquare');
+
+function boardFull(){
+  //if there no numbers on the board
+  if(isNaN(parseInt(fullSquare.textContent))){
+    console.log('hi');
+  }
+}
+
+
+
+  // console.log(parseInt(fullSquare.textContent));
+
+// if((orderedX[0] && orderedX[1] && orderedX[2]).includes){
+//   console.log('orderx', orderedX)
+//   alert('Player1 Wins');
 
 
 
