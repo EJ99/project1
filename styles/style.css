@@ -55,14 +55,14 @@ body{
     left: 50%;
     margin-top: -100px;
     margin-left: -150px;
-    background-color:#f6f5f4;
+    background-color:lightgray;
     border-radius: 8px;
     text-align: center;
     z-index: 11; /* 1px higher than the overlay layer */
     border-radius:5px;
     border-width:4px;
     border-style:outset;
-    border-color:lightgray ;
+    border-color:gray;
     box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
 }
 
@@ -77,6 +77,14 @@ header{
   padding:3.5px;
   margin:0;
   border-bottom: 5px solid lightgray;
+}
+
+footer{
+  text-align: center;
+  background-color:white;
+  height:50px;
+  margin:0;
+  border-top: 4px solid lightgray;
 }
 
 h1{
@@ -116,15 +124,18 @@ h1{
 }
 
 .cross{
-  background-image: url(images/buttertoast.jpeg);
-  background-size: 150px 150px;
+  background-image: url(images/cross5.png);
+  background-size: 115px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .circle{
   font-size: 0px;
-    background-size: 200px 150px;
-  background-image: url(images/burnttoast.jpg);
+  background-size:115px;
+  background-image: url(images/circle3.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .names{
@@ -199,8 +210,8 @@ button{
   background-color: #ff8080;
   color:white;
   position: fixed;
-  top: 57%;
-  left: 47%;
+  top: 55%;
+  left: 48%;
 }
 
 
@@ -273,14 +284,11 @@ button{
   }
 
   .cross{
-    background-image: url(images/taco.jpg);
-    background-size: 300px 250px;
-    background-repeat: no-repeat;
+    background-size: 115px;
   }
 
   .circle{
-    background-image: url(images/tomato.jpg);
-    background-size: 300px 250px;
+    background-size: 115px;
   }
 }
 
@@ -291,7 +299,7 @@ button{
 @media (max-width: 600px) {
   #board{
     text-align: center;
-    margin:0 auto;
+    margin:100px auto;
     display: block;
     width:350px;
     font-family:dinproreg;
@@ -314,19 +322,42 @@ button{
    }
 
    .cross{
-     background-image: url(images/taco.jpg);
-     background-size: 300px 250px;
-     background-repeat: no-repeat;
+     background-size: 50px;
    }
 
    .circle{
-     background-image: url(images/tomato.jpg);
-     background-size: 300px 250px;
+     background-size: 50px;
+   }
+
+   #resultWrapper{
+     border-bottom: 3px solid white;
+     font-size: 1.6em;
+   }
+
+   #result{
+     float:left;
+     background-color:#28CCF1;
+     border-radius: 2px;
+     padding: 2px;
+     min-width: 150px;
+     margin-top:30px;
+     border:4px solid white;
+     margin-left: 20px;
+   }
+
+   #result2{
+     float: right;
+     background-color:#FF440B;
+     border-radius: 2px;
+     padding: 2px;
+     min-width: 150px;
+     margin-top:30px;
+     border:4px solid white;
+     margin-right: 20px;
    }
  }
 
 
-}
 
 /*#28CCF1*/
 
@@ -354,59 +385,99 @@ button{
 
 /*------------------ANIMATIONS--------------*/
 
-.slideDown{
-	animation-name: slideDown;
-	-webkit-animation-name: slideDown;
-
-	animation-duration: 1s;
-	-webkit-animation-duration: 1s;
-
-	animation-timing-function: ease;
-	-webkit-animation-timing-function: ease;
-
-	visibility: visible !important;
+/*#animated-example {
+   margin: 20px auto;
+   display:inline-block;
+   font-family: dinproreg;
+   font-size: 20px;
 }
 
-@keyframes slideDown {
-	0% {
-		transform: translateY(-100%);
-	}
-	50%{
-		transform: translateY(8%);
-	}
-	65%{
-		transform: translateY(-4%);
-	}
-	80%{
-		transform: translateY(4%);
-	}
-	95%{
-		transform: translateY(-2%);
-	}
-	100% {
-		transform: translateY(0%);
-	}
+.animated {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
 }
 
-@-webkit-keyframes slideDown {
-	0% {
-		-webkit-transform: translateY(-100%);
-	}
-	50%{
-		-webkit-transform: translateY(8%);
-	}
-	65%{
-		-webkit-transform: translateY(-4%);
-	}
-	80%{
-		-webkit-transform: translateY(4%);
-	}
-	95%{
-		-webkit-transform: translateY(-2%);
-	}
-	100% {
-		-webkit-transform: translateY(0%);
-	}
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.fadeInLeft {
+    animation-name: fadeInLeft;
 }
 
-/*
+
+
+/*-----------ANIMATION 2------*/
+
+/*#scoreboard{
+  width: 300px;
+  height: 70px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  /*box-shadow: inset 0 0 7px rgba(0,0,0,0.7);*/
+  /*z-index: 12;
+  font-family: dinproreg;
+  color:black;
+  font-size: 25px;
+  background-color:#ccffff;
+  text-align:center;
+  line-height: 50px;
+  border-radius: 3px;
+  border-radius:5px;
+  border-width:4px;
+  border-style:outset;
+  border-color:#28CCF1 ;
+  box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
+}
+
+.animated {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@keyframes flipInX {
+    0%, 100% {
+        transform: perspective(400px) rotateX(90deg);
+        opacity: 0;
+    }
+    40% {
+        transform: perspective(400px) rotateX(-10deg);
+    }
+    60% {
+        transform: perspective(400px) rotateX(10deg);
+    }
+    80% {
+        transform: perspective(400px) rotateX(0deg);
+        opacity: 1;
+    }
+}
+.flipInX {
+    backface-visibility: visible !important;
+    animation-name: flipInX;
+}*/
+
+/*///////////////////////////*/
+
+.animatedScore{
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+.pulse {
+    animation-name: pulse;
+}

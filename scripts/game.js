@@ -93,6 +93,8 @@ function checkNames(){
   player1name = document.getElementById("name1").value;
   player2name = document.getElementById("name2").value;
   nameInput = document.getElementsByClassName("names");
+  player1name = player1name.toUpperCase();
+  player2name = player2name.toUpperCase();
   // var displayMessage = document.getElementById("display");
   //display hidden of input boxes
   var result = document.getElementById("result");
@@ -108,22 +110,25 @@ function checkNames(){
 
 //////////CHECK FOR WINS AND RESET GAME
 
+$('#scoreboard').hide()
+
 function checkWin(){
 
   for (var c = 0; c < win.length; c++){
       var orderedO = currentGameO.sort();
       var orderedX = currentGameX.sort();
       var result = document.getElementById('result');
+      // var play1winmessage = document.getElementById('animated-example');
       // console.log( (win[c].indexOf(orderedX[0])) );
 
     if( (orderedX.indexOf(win[c][0]) !== -1) && (orderedX.indexOf(win[c][1]) !== -1) && (orderedX.indexOf(win[c][2]) !== -1) ) {
-      alert('Player1 Wins');
-      resetGame();
+      $('#result').addClass("animatedScore pulse");
       player1Wins += 1;
       player2Wins += 0;
       result.innerHTML = player1name + ": " + player1Wins;
+      resetGame();
     }else if( (orderedO.indexOf(win[c][0]) !== -1) && (orderedO.indexOf(win[c][1]) !== -1) && (orderedO.indexOf(win[c][2]) !== -1) ){
-      alert('Player2 wins');
+      $('#result2').addClass("animatedScore pulse");
       resetGame();
       player2Wins += 1;
       player1Wins += 0;
@@ -136,6 +141,8 @@ function checkWin(){
   }
 }
 
+
+
 //////////RESET GAME FUNCTION
 
 function resetGame(){
@@ -147,6 +154,12 @@ function resetGame(){
   currentGameX = [];
   player1 = true;
   $(".names").show();
+  setTimeout(function(){
+  $('#result').removeClass("animatedScore pulse");
+  }, 1000);
+  setTimeout(function(){
+  $('#result2').removeClass("animatedScore pulse");
+  }, 1000);
 }
 
 
