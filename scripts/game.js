@@ -10,16 +10,14 @@
 //when click on a spot
 //update the board array with the value
 //call the function to draw the board again
+//type a string and use split method to turn in to an array to be lazy
 
 
-
-////make the board
+////////CREATE BOARD
 
 var boardDiv = document.getElementById('board');
 
 var board2 = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
-
-//type a string and use split method to turn in to an array to be lazy
 
 function createSquares(){
 
@@ -35,9 +33,7 @@ function createSquares(){
 createSquares();
 
 
-//alternate the turns
-//check for wins
-
+///////POSSIBLE WIN COMBINATIONS
 
 var win = [
   [0, 1, 2],
@@ -50,86 +46,61 @@ var win = [
   [2, 4, 6]
 ]
 
-// var gameState =
-
 var squares = document.getElementsByClassName('square');
 var player1 = true;
 
 var currentGameO = [];
 var currentGameX = [];
 
+//////////ALTERNATE VALUE OF SQUARES
+
 function changeValue(){
   for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function(event){
-      if(player1 === true){
-        console.log(event.target.textContent);
+      if((player1 === true) && (event.target.textContent !== ('X' || 'O'))){
         var currentPositionX = parseInt(event.target.textContent);
-        event.target.className = 'cross';
-        event.target.textContent = 'X';
+        event.target.className = 'cross fullSquare';
+        event.target.innerHTML = 'X';
         currentGameX.push(currentPositionX);
-        ////Check for wins
-        // if currentGameO === win combination
 
-
-      }else{
-        console.log(event.target.textContent);
+      }else if((player1 === false) && (event.target.textContent !== ('X' || 'O'))){
         var currentPositionO = parseInt(event.target.textContent);
-        event.target.className = 'circle';
+        event.target.className = 'circle fullSquare';
         event.target.textContent = 'O';
         currentGameO.push(currentPositionO);
 
-
-        ////Check for wins
-        // if currentGameX === win combination
-
       }
       player1 = !player1;
-      // console.log(parseInt(fullSquare.textContent));
-      boardFull();
       checkWin();
     })
-
   }
-
 }
 
 changeValue();
+
+//////////CHECK FOR WINS AND RESET GAME
 
 function checkWin(){
 
   for (var c = 0; c < win.length; c++){
       var orderedO = currentGameO.sort();
       var orderedX = currentGameX.sort();
-      // console.log('checking for win');
-      // console.log(win[c]);
-      // console.log('orderedO ---- ' + orderedO);
-      // console.log('orderedX ---- ' + orderedX);
-      // console.log(orderedX);
-      // console.log(orderedO);
-
       // console.log( (win[c].indexOf(orderedX[0])) );
-      // console.log( (win[c].indexOf(orderedX[1])) );
-      // console.log( (win[c].indexOf(orderedX[2])) );
 
-
-    // if((win[c][0] === orderedX[0] && win[c][1] === orderedX[1] && win[c][2] === orderedX[2])){
     if( (orderedX.indexOf(win[c][0]) !== -1) && (orderedX.indexOf(win[c][1]) !== -1) && (orderedX.indexOf(win[c][2]) !== -1) ) {
-      // console.log('orderx', orderedX)
       alert('Player1 Wins');
-
-      //if index of first position of is there
-
-      //reset the game
       resetGame();
     }else if( (orderedO.indexOf(win[c][0]) !== -1) && (orderedO.indexOf(win[c][1]) !== -1) && (orderedO.indexOf(win[c][2]) !== -1) ){
-      alert('player2 wins');
-      // console.log('ordero', orderedO)
-      // console.log('player2');
-      //reset the game
-        resetGame();
+      alert('Player2 wins');
+      resetGame();
+    }else if (!/[^a-zA-Z]/.test(boardDiv.textContent)){
+      alert('DRAW');
+      resetGame();
     }
   }
 }
+
+//////////RESET GAME FUNCTION
 
 function resetGame(){
   document.querySelector("#board").innerHTML = " ";
@@ -140,17 +111,47 @@ function resetGame(){
   player1 = true;
 }
 
-var fullSquare = document.getElementsByClassName('fullSquare');
 
-function boardFull(){
-  //if there no numbers on the board
-  if(isNaN(parseInt(fullSquare.textContent))){
-    console.log('hi');
+/////////////INPUT NAMES
+
+function checkNames(){
+
+  var errorMsg = "";
+
+  var nameInput1 = document.getElementById("name1").value;
+  var nameInput2 = document.getElementById("name2").value;
+  var displayMessage = document.getElementById("display");
+
+  if (nameInput1 === ""){
+    errorMsg += "Please enter player1 name.\n";
+  }else{
+    displayMessage.innerHTML = ("Player One: " + nameInput1 + "<br>");
   }
+
+  if (nameInput2 === ""){
+    errorMsg += "Please enter player2 name.\n";
+  }else{
+    displayMessage.innerHTML += ("Player Two: " + nameInput2 + "<br>");
+  }
+
+  if(errorMsg != ""){
+    displayMessage.innerHTML = errorMsg;
+  }
+
 }
 
 
 
+// function boardFull(){
+//   //if there no numbers on the board
+//   var cross = document.getElementsByClassName('cross');
+//   if(isNaN(cross.textContent)){
+//     console.log('hi');
+//   }
+// }
+//
+
+// boardFull();
   // console.log(parseInt(fullSquare.textContent));
 
 // if((orderedX[0] && orderedX[1] && orderedX[2]).includes){
