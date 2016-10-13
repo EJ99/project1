@@ -19,6 +19,12 @@ var boardDiv = document.getElementById('board');
 
 var board2 = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 
+var player1name = 'player 1';
+var player2name = 'player 2';
+var player1Wins = 0;
+var player2Wins = 0;
+var keepScore = document.getElementById('keepScore');
+
 function createSquares(){
 
   for(var i = 0; i < board2.length; i++){
@@ -54,15 +60,17 @@ var currentGameX = [];
 
 //////////ALTERNATE VALUE OF SQUARES
 
+// var cheese = '<img src="images/cheese1.png">'
+// var tomato = '<img src="images/tomato1.png">'
+
 function changeValue(){
   for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function(event){
       if((player1 === true) && (event.target.textContent !== ('X' || 'O'))){
         var currentPositionX = parseInt(event.target.textContent);
         event.target.className = 'cross fullSquare';
-        event.target.innerHTML = 'X';
+        event.target.innerHTML = 'X'; //fontsie 0 //class with a background image
         currentGameX.push(currentPositionX);
-
       }else if((player1 === false) && (event.target.textContent !== ('X' || 'O'))){
         var currentPositionO = parseInt(event.target.textContent);
         event.target.className = 'circle fullSquare';
@@ -78,6 +86,26 @@ function changeValue(){
 
 changeValue();
 
+///////////////CHECK PLAYER NAMES
+
+function checkNames(){
+
+  player1name = document.getElementById("name1").value;
+  player2name = document.getElementById("name2").value;
+  nameInput = document.getElementsByClassName("names");
+  // var displayMessage = document.getElementById("display");
+  //display hidden of input boxes
+  var result = document.getElementById("result");
+  var result2 = document.getElementById("result2");
+  var p1Ptag = document.createElement('P');
+  var p2Ptag = document.createElement('P');
+  result.innerHTML = player1name + ": " + player1Wins;
+  result2.innerHTML = player2name + ": " + player2Wins;
+  $(".firstScreen").hide();
+  // result.innerHTML = player2name;
+}
+
+
 //////////CHECK FOR WINS AND RESET GAME
 
 function checkWin(){
@@ -85,16 +113,24 @@ function checkWin(){
   for (var c = 0; c < win.length; c++){
       var orderedO = currentGameO.sort();
       var orderedX = currentGameX.sort();
+      var result = document.getElementById('result');
       // console.log( (win[c].indexOf(orderedX[0])) );
 
     if( (orderedX.indexOf(win[c][0]) !== -1) && (orderedX.indexOf(win[c][1]) !== -1) && (orderedX.indexOf(win[c][2]) !== -1) ) {
       alert('Player1 Wins');
       resetGame();
+      player1Wins += 1;
+      player2Wins += 0;
+      result.innerHTML = player1name + ": " + player1Wins;
     }else if( (orderedO.indexOf(win[c][0]) !== -1) && (orderedO.indexOf(win[c][1]) !== -1) && (orderedO.indexOf(win[c][2]) !== -1) ){
       alert('Player2 wins');
       resetGame();
+      player2Wins += 1;
+      player1Wins += 0;
+      result2.innerHTML = player2name + ": " + player2Wins;
     }else if (!/[^a-zA-Z]/.test(boardDiv.textContent)){
       alert('DRAW');
+      // result.innerHTML = "<p>Draw<p>"
       resetGame();
     }
   }
@@ -103,42 +139,41 @@ function checkWin(){
 //////////RESET GAME FUNCTION
 
 function resetGame(){
-  document.querySelector("#board").innerHTML = " ";
+
+  document.querySelector("#board").innerHTML = "";
   createSquares();
   changeValue();
   currentGameO = [];
   currentGameX = [];
   player1 = true;
+  $(".names").show();
 }
 
 
 /////////////INPUT NAMES
 
-function checkNames(){
 
-  var errorMsg = "";
 
-  var nameInput1 = document.getElementById("name1").value;
-  var nameInput2 = document.getElementById("name2").value;
-  var displayMessage = document.getElementById("display");
 
-  if (nameInput1 === ""){
-    errorMsg += "Please enter player1 name.\n";
-  }else{
-    displayMessage.innerHTML = ("Player One: " + nameInput1 + "<br>");
-  }
+//make an event listener instead of onclick
 
-  if (nameInput2 === ""){
-    errorMsg += "Please enter player2 name.\n";
-  }else{
-    displayMessage.innerHTML += ("Player Two: " + nameInput2 + "<br>");
-  }
 
-  if(errorMsg != ""){
-    displayMessage.innerHTML = errorMsg;
-  }
+  // if (nameInput1 === ""){
+  //   errorMsg += "Please enter player1 name.\n";
+  // }else{
+  //   displayMessage.innerHTML = ("Player One: " + nameInput1 + "<br>");
+  // }
+  //
+  // if (nameInput2 === ""){
+  //   errorMsg += "Please enter player2 name.\n";
+  // }else{
+  //   displayMessage.innerHTML += ("Player Two: " + nameInput2 + "<br>");
+  // }
+  //
+  // if(errorMsg != ""){
+  //   displayMessage.innerHTML = errorMsg;
+  //
 
-}
 
 
 
