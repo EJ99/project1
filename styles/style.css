@@ -47,14 +47,14 @@ body{
 }
 
 .modal{
-    width: 300px;
-    height: 260px;
+    width: 250px;
+    height: 220px;
     line-height: 200px;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -100px;
-    margin-left: -150px;
+    margin-left: -130px;
     background-color:lightgray;
     border-radius: 8px;
     text-align: center;
@@ -68,7 +68,7 @@ body{
 
 #newGame{
   margin-top: -70px;
-  font-size: 24px;
+  font-size: 20px;
   font-family: dinproreg;
 }
 
@@ -108,7 +108,7 @@ h1{
   text-align: center;
   margin:0 auto;
   display: block;
-  width:550px;
+  width:400px;
   font-family:dinproreg;
   clear:both;
   margin-bottom: 200px;
@@ -120,7 +120,7 @@ h1{
   border:4px outset lightgray;
   box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
   color:white;
-  padding:85px 70px;
+  padding:60px 50px;
   display:inline-block;
   width:33%;
   background-color:#f6f5f4;
@@ -128,21 +128,18 @@ h1{
   border-radius:3px;
 }
 
-.cross{
+.cross, .circle{
   background-image: url(images/cross5.png);
-  background-size: 115px;
+  background-size: 70px;
   background-repeat: no-repeat;
   background-position: center;
   background-color:#f6f5f4;
+  font-size: 0px;
 }
 
 .circle{
   font-size: 0px;
-  background-size:115px;
   background-image: url(images/circle3.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color:#f6f5f4;
 }
 
 /*#gameType{
@@ -193,10 +190,11 @@ h1{
 .input {
   font-family:dinproreg;
   padding:9px;
-  font-size:19px;
+  font-size:15px;
+  width:205px;
   text-align:center;
   border-radius:5px;
-  border-width:4px;
+  border-width:3px;
   border-style:outset;
   box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
   font-weight:normal;
@@ -213,11 +211,11 @@ h1{
 }
 
 button{
-  padding:8px;
-  font-size:19px;
+  padding:5px;
+  font-size:15px;
   text-align:center;
   border-radius:25px;
-  border-width:4px;
+  border-width:3.8px;
   border-style:outset;
   border-color:red;
   box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
@@ -289,7 +287,7 @@ button{
     text-align: center;
     margin:0 auto;
     display: block;
-    width:550px;
+    width:400px;
     font-family:dinproreg;
    }
 
@@ -297,7 +295,7 @@ button{
     border:4px outset lightgray;
     box-shadow: 0px 0px 0px 0px rgba(42,42,42,.75);
     color:white;
-    padding:80px 60px;
+    padding:60px 50px;
     display:inline-block;
     width:33%;
     background-color:#f6f5f4;
